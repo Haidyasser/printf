@@ -1,0 +1,71 @@
+#include <stdarg.h>
+#include <unistd.h>
+
+/**
+ * _printf - produces output according to a format
+ * @format: character string
+ *
+ * Return: the number of characters printed
+ */
+int _printf(const char *format, ...)
+{
+	va_list args; /* a variable to handle the variable argument list */
+	int count = 0; /* to keep track of the number of characters printed */
+	char c; /* to hold the character to be printed */
+
+	/* Initialize args variable to point to the first optional argument */
+	va_start(args, format);
+
+	/* Loop through each character in the format string */
+	while (*format)
+	{
+		/* If the current character is a '%' */
+		if (*format == '%')
+		{
+			/* Move to the next character */
+			format++;
+
+			/* Switch on the next character */
+			switch (*format)
+			{
+			case 'c':
+				/* Get the next argument from the list
+				 *and cast it to a char */
+				c = (char)va_arg(args, int);
+				/* Write the character to stdout */
+				write(1, &c, 1);
+				/* Increment the count */
+				count++;
+				break;
+			case 's':
+				/* print next argument*/
+			count += write(1, va_arg(args, char *), strlen(va_arg(args, char *)));
+			break;
+			case '%': /* If it's a '%' */
+				/* Write a '%' character to stdout */
+				write(1, "%", 1);
+				/* Increment the count */
+				count++;
+				break;
+			default: /* If it's anything else */
+				break;
+			}
+		}
+		else /* If the current character is not a '%' */
+		{
+			/* Write the current character to stdout */
+			write(1, format, 1);
+			/* Increment the count */
+			count++;
+		}
+
+		/* Move to the next character in the format string */
+		format++;
+	}
+
+	/* Clean up the variable argument list */
+	va_end(args);
+
+	/* Return the number of characters printed */
+	return (count);
+}
