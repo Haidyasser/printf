@@ -42,7 +42,7 @@ int print_string(va_list args)
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int count = 0;
+	int count = 0, printed = 0;
 
 	if (format == NULL)
 		return (-1);
@@ -55,23 +55,25 @@ int _printf(const char *format, ...)
 			switch (*format)
 			{
 			case 'c':
-				count += print_char(args);
+				printed = print_char(args);
 				break;
 			case 's':
-				count += print_string(args);
+				printed = print_string(args);
 				break;
 			case '%':
-				count += write(1, "%", 1);
+				printed = write(1, "%", 1);
 				break;
 			default:
-				va_end(args);
-				return (-1);
+				break;
 			}
 		}
 		else
 		{
-			count += write(1, format, 1);
+			printed = write(1, format, 1);
 		}
+		if (printed == -1)
+			return (-1);
+		count += printed;
 		format++;
 	}
 	va_end(args);
