@@ -64,6 +64,7 @@ int _printf(const char *format, ...)
 				printed = write(1, "%", 1);
 				break;
 			default:
+				printed = -1;
 				break;
 			}
 		}
@@ -71,7 +72,7 @@ int _printf(const char *format, ...)
 		{
 			printed = write(1, format, 1);
 		}
-		if (printed <= 0)
+		if (printed <= -1)
 		{
 			va_end(args);
 			return (-1);
