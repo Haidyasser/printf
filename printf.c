@@ -69,9 +69,7 @@ int _printf(const char *format, ...)
 			}
 		}
 		else
-		{
 			printed = write(1, format, 1);
-		}
 		if (printed <= -1)
 		{
 			va_end(args);
