@@ -72,7 +72,10 @@ int _printf(const char *format, ...)
 			printed = write(1, format, 1);
 		}
 		if (printed == -1)
+		{
+			va_end(args);
 			return (-1);
+		}
 		count += printed;
 		format++;
 	}
