@@ -57,7 +57,7 @@ int _printf(const char *format, ...)
 			switch (*format)
 			{
 			case 'c':
-				printed = print_char(args)
+				printed = print_char(args);
 				break;
 			case 's':
 				printed = print_string(args);
