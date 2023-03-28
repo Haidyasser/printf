@@ -61,8 +61,7 @@ int _printf(const char *format, ...)
 				count += print_string(args);
 				break;
 			case '%':
-				write(1, "%", 1);
-				count++;
+				count += write(1, "%", 1);
 				break;
 			default:
 				va_end(args);
@@ -71,8 +70,7 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-			write(1, format, 1);
-			count++;
+			count += write(1, format, 1);
 		}
 		format++;
 	}
