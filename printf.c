@@ -67,7 +67,8 @@ int _printf(const char *format, ...)
 				count++;
 				break;
 			default:
-				break;
+				va_end(args);
+				return (-1);
 			}
 		}
 		else
