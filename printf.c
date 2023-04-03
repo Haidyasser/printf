@@ -29,12 +29,14 @@ int print_string(va_list args)
 	int len;
 
 	str = va_arg(args, char *);
+<<<<<<< HEAD
 	if (str == NULL)
 		str = "(null)";
+=======
+>>>>>>> 2607023c887a8981bd0f51a15867f62add22d3c7
 	len = strlen(str);
 	return (write(1, str, len));
 }
-
 
 /**
  * _printf - produces output according to a format
@@ -84,4 +86,3 @@ int _printf(const char *format, ...)
 	va_end(args);
 	return (count);
 }
-
