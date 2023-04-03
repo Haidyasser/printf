@@ -33,6 +33,7 @@ int print_string(va_list args)
 	return (write(1, str, len));
 }
 
+
 /**
  * _printf - produces output according to a format
  * @format: character string
@@ -63,6 +64,10 @@ int _printf(const char *format, ...)
 			case '%':
 				printed = write(1, "%", 1);
 				break;
+			case 'd':
+			case 'i':
+				printed = print_int(args);
+				break;
 			default:
 				printed = -1;
 				break;
@@ -71,13 +76,11 @@ int _printf(const char *format, ...)
 		else
 			printed = write(1, format, 1);
 		if (printed <= -1)
-		{
-			va_end(args);
-			return (-1);
-		}
+			return (va_end(args), -1);
 		count += printed;
 		format++;
 	}
 	va_end(args);
 	return (count);
 }
+
