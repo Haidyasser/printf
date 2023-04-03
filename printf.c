@@ -25,12 +25,14 @@ int print_char(va_list args)
  */
 int print_string(va_list args)
 {
-	char *str;
-	int len;
+    char *str;
+    int len;
 
-	str = va_arg(args, char *);
-	len = strlen(str);
-	return (write(1, str, len));
+    str = va_arg(args, char *);
+    if (str == NULL)
+        str = "(null)";
+    len = strlen(str);
+    return (write(1, str, len));
 }
 
 
