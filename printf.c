@@ -24,7 +24,10 @@ int print_string(va_list args)
 {
 	char *str;
 	int len;
+
 	str = va_arg(args, char *);
+	if (!str)
+		return -1;
 	len = strlen(str);
 	return (write(1, str, len));
 }
