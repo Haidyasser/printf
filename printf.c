@@ -1,5 +1,6 @@
 #include <stdarg.h>
 #include <unistd.h>
+#include "main.h"
 
 /**
  * print_char - Prints a character
@@ -52,7 +53,7 @@ void print_percent(int *count)
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int count = 0, i, j;
+	int count = 0, i;
 
 	va_start(args, format);
 	for (i = 0; format[i] != '\0'; i++)
